@@ -1,0 +1,132 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: Device
+metadata:
+  name: oemrs-device
+  labels:
+    description: oemrs
+    manufacturer: tde
+    model: oemrs
+spec:
+  deviceModelRef:
+    name: oemrs-model
+  protocol:
+    modbus:
+      slaveID: 1
+    common:
+      com:
+        serialPort: '/dev/ttyS0'
+        baudRate: 2400
+        dataBits: 8
+        parity: even
+        stopBits: 1
+      customizedValues:
+        serialType: "RS232"
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: ''
+        operator: In
+        values:
+        - edgenode-mrnuanshu-test1
+  propertyVisitors:
+    - propertyName: position
+      modbus:
+        register: HoldingRegister
+        offset: 40010
+        limit: 1
+        scale: 1
+        isSwap: false
+        isRegisterSwap: false
+    - propertyName: water-supply-temperature
+      modbus:
+        register: HoldingRegister
+        offset: 40011
+        limit: 1
+        scale: 1
+        isSwap: false
+        isRegisterSwap: false
+    - propertyName: return-water-temperature
+      modbus:
+        register: HoldingRegister
+        offset: 40012
+        limit: 1
+        scale: 1
+        isSwap: false
+        isRegisterSwap: false
+    - propertyName: self-test-command
+      modbus:
+        register: HoldingRegister
+        offset: 40026
+        limit: 1
+        scale: 1
+        isSwap: false
+        isRegisterSwap: false
+    - propertyName: actuator-control-signal
+      modbus:
+        register: HoldingRegister
+        offset: 40027
+        limit: 1
+        scale: 1
+        isSwap: false
+        isRegisterSwap: false
+status:
+  twins:
+    - propertyName: position
+      reported:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+      desired:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+
+    - propertyName: water-supply-temperature
+      reported:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+      desired:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+
+    - propertyName: return-water-temperature
+      reported:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+      desired:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+
+    - propertyName: self-test-command
+      reported:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+      desired:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+
+    - propertyName:  actuator-control-signal
+      reported:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "1000"
+      desired:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "1000"

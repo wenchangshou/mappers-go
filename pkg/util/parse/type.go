@@ -340,8 +340,9 @@ func ConvMsgTwinToGrpc(msgTwin map[string]*common.MsgTwin) []*dmiapi.Twin {
 			Reported: &dmiapi.TwinProperty{
 				Value: *twin.Actual.Value,
 				Metadata: map[string]string{
-					"type":      twin.Metadata.Type,
-					"timestamp": twin.Actual.Metadata.Timestamp,
+					"type":         twin.Metadata.Type,
+					"propertyType": twin.Metadata.Type,
+					"timestamp":    twin.Actual.Metadata.Timestamp,
 				}},
 		}
 		twins = append(twins, twinData)

@@ -1,0 +1,36 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: DeviceModel
+metadata:
+ name: oemrs-model
+#  namespace: edge
+spec:
+ properties:
+  - name: position
+    description: Actuator position feedback value
+    type:
+      int:
+        accessMode: ReadOnly
+  - name:  water-supply-temperature
+    description: 供水温度
+    type:
+      int:
+        accessMode: ReadOnly
+  - name: return-water-temperature
+    description: 回水温度
+    type:
+      int:
+        accessMode: ReadOnly
+  - name: self-test-command
+    description: 自检测命令
+    type:
+      int:
+        accessMode: ReadWrite 
+  - name: actuator-control-signal
+    description: 执行器控制信号
+    type:
+      int:
+        accessMode: ReadWrite 
+    
+
+  
+

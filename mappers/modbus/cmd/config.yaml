@@ -1,0 +1,6 @@
+mqtt:
+  server: tcp://192.168.10.250:1884
+  username: ""
+  password: ""
+  certification: ""
+configmap: D:\code\mappers-go\mappers\modbus\configmap\configmap_test.json

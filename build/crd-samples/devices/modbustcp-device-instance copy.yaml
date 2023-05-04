@@ -1,0 +1,47 @@
+apiVersion: devices.kubeedge.io/v1alpha2
+kind: Device
+metadata:
+  name: oemrs-device
+  labels:
+    description: oemrs
+    manufacturer: tde
+    model: oemrs
+spec:
+  deviceModelRef:
+    name: oemrs-model
+  protocol:
+    modbus:
+      slaveID: 1
+    common:
+      tcp:
+        ip: "192.168.20.146"
+        port: 502
+  nodeSelector:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: ''
+        operator: In
+        values:
+        - edgenode-mrnuanshu-test1
+  propertyVisitors:
+    - propertyName: temperature-enable
+      modbus:
+        register: HoldingRegister
+        offset: 3
+        limit: 1
+        scale: 1.0
+        isSwap: false
+        isRegisterSwap: false
+status:
+  twins:
+    - propertyName: temperature-enable
+      reported:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
+      desired:
+        metadata:
+          timestamp: '1550049403598'
+          type: int
+        value: "0"
